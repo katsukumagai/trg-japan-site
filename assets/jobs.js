@@ -76,17 +76,18 @@
       .filter(Boolean).map((t) => (t.startsWith("<") ? t : `<span>${esc(t)}</span>`)).join("");
     const subject = EN ? `Role inquiry: ${j.company} / ${j.title}` : `求人の相談：${j.company}／${j.title}`;
     const generic = EN ? "We will explain the role, the process and the experience required." : "業務内容・選考の流れ・求める経験を詳しくご説明します。";
-    const about = j.confidential
+    const team = !!window.TEAM;
+    const about = (j.confidential && !team)
       ? (EN ? "The company name is shared in our conversation. " : "企業名は面談の際にお伝えしています。") + generic
       : (j.about || generic);
     return `<li class="job"><details>
       <summary>
-        <span class="j-title">${esc(j.title)}</span>
-        <span class="j-co">${esc(j.company)}${j.confidential ? `<span class="conf">${EN ? "Confidential" : "企業名非公開"}</span>` : ""}</span>
+        ${j.jd ? `<a class="j-title jd-link" href="${esc(j.jd)}" target="_blank" rel="noopener">${esc(j.title)}<span class="jd-ico" aria-hidden="true"> ↗</span></a>` : `<span class="j-title">${esc(j.title)}</span>`}
+        <span class="j-co">${esc(j.company)}${j.confidential ? `<span class="conf">${team ? "Semi-Open" : EN ? "Confidential" : "企業名非公開"}</span>` : ""}</span>
         <span class="j-tags">${tags}</span>
         <span class="j-sal"><small>${EN ? "Salary" : "年収"}</small> <b>${fmt(j.salary)}</b>${pct ? `<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span>` : ""}</span>
       </summary>
-      <div class="j-body"><p>${esc(about)}</p><a class="btn btn-primary btn-sm" href="#" data-mail="${esc(subject)}">${EN ? "Ask about this role" : "この求人について相談する"}</a></div>
+      <div class="j-body"><p>${esc(about)}</p>${j.jd ? `<a class="btn btn-ghost btn-sm" href="${esc(j.jd)}" target="_blank" rel="noopener">${EN ? "Open JD (Google Doc)" : "JDを開く（Googleドキュメント）"}</a> ` : ""}<a class="btn btn-primary btn-sm" href="#" data-mail="${esc(subject)}">${EN ? "Ask about this role" : "この求人について相談する"}</a></div>
     </details></li>`;
   }
 

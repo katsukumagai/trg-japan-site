@@ -102,11 +102,33 @@
   };
   window.JOBS_SOURCE = "static";
 
+  // ログイン後のチーム用データ（実名・JDリンク入り）。シート由来の英語表記を、このページの言語に直して使う。
+  var teamJobs = null;
+  window.trgSetTeamJobs = function (list) {
+    teamJobs = list.map(function (j) {
+      var sal = parseInt(String(j.salary).replace(/[^0-9]/g, ""), 10);
+      return {
+        company: j.company, confidential: !!j.confidential, title: j.title,
+        category: tr0("category", j.category), industry: tr0("industry", j.industry),
+        salary: isNaN(sal) ? 0 : sal, style: tr0("style", j.style), language: tr0("language", j.language),
+        about: j.about || "", jd: j.jd || ""
+      };
+    });
+    window.TEAM = true;
+    window.JOBS = teamJobs;
+    window.JOBS_SOURCE = "team";
+    window.JOBS_UPDATED = today();
+    liveReady = true;
+    subs.forEach(function (cb) { try { cb(); } catch (e) { if (window.console) console.error(e); } });
+  };
+  function tr0(k, v) { return EN ? v : ((MAP[k] && MAP[k][v]) || v); }
+
   fetch(CSV_URL, { cache: "no-store" })
     .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.text(); })
     .then(function (t) {
       var jobs = toJobs(parseCSV(t));
       if (jobs.length < 1) throw new Error("empty");
+      if (teamJobs) return; // すでにチーム用データを表示中なら、公開（匿名）データで上書きしない
       window.JOBS = jobs;
       window.JOBS_UPDATED = today();
       window.JOBS_SOURCE = "sheet";
