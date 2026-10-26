@@ -440,3 +440,7 @@ h1,h2,h3{text-wrap:balance}
 .jd-link:hover{color:var(--teal)}
 .jd-ico{color:var(--teal);font-size:.85em}
 @media (max-width:760px){.loginbtn{align-self:flex-start}}
+/* login button on dark header */
+.site-head .loginbtn{color:#E8EBF7;border-color:rgba(255,255,255,.35);white-space:nowrap;padding:6px 14px;line-height:1.2}
+.site-head .loginbtn:hover{color:var(--mint);border-color:var(--mint)}
+.site-head .loginbtn.on{background:rgba(255,255,255,.1);border-color:var(--mint);color:var(--mint)}
