@@ -1,4 +1,4 @@
-(function () {
+(window.jobsReady || Promise.resolve()).then(function () {
   const JOBS = window.JOBS || [], S = window.SITE, esc = window.esc, fmt = window.fmtSalary;
   const $ = (id) => document.getElementById(id);
   const MAXBAR = 3000; // 年収バーのスケール上限（万円）
@@ -102,4 +102,4 @@
   });
 
   syncChips(); render();
-})();
+});

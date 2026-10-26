@@ -28,9 +28,18 @@ window.SITE = {
     t.setAttribute("aria-expanded", open);
   });
 
-  const jobs = window.JOBS || [];
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   window.esc = esc;
+
+  // Revolent：プラットフォーム切替タブ
+  const tabs = document.querySelectorAll(".tabs [role='tab']");
+  tabs.forEach((b) => b.addEventListener("click", () => {
+    tabs.forEach((x) => { x.setAttribute("aria-selected", x === b); document.getElementById(x.getAttribute("aria-controls")).hidden = x !== b; });
+  }));
+
+  // 求人データ（スプレッドシート or 固定データ）の準備ができてから反映
+  (window.jobsReady || Promise.resolve()).then(() => {
+  const jobs = window.JOBS || [];
 
   // トップ：ヒーローの求人ティッカー（年収上位、重複企業を間引く）
   const tl = document.getElementById("ticker-list");
@@ -64,9 +73,5 @@ window.SITE = {
   const upd = document.querySelector("[data-updated]");
   if (upd && window.JOBS_UPDATED) upd.textContent = window.JOBS_UPDATED.replace(/-/g, ".");
 
-  // Revolent：プラットフォーム切替タブ
-  const tabs = document.querySelectorAll(".tabs [role='tab']");
-  tabs.forEach((b) => b.addEventListener("click", () => {
-    tabs.forEach((x) => { x.setAttribute("aria-selected", x === b); document.getElementById(x.getAttribute("aria-controls")).hidden = x !== b; });
-  }));
+  });
 })();
