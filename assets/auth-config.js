@@ -1,2 +1,1 @@
-// Googleログインの設定（Google Cloud のOAuthクライアントIDと、Apps ScriptのWebアプリURL）。空のあいだはログイン機能は表示されない。
-window.TRG_AUTH = { clientId: "", api: "" };
+window.TRG_AUTH = { clientId: "550437866605-969el328sflp512dugdc2ip9980umn41.apps.googleusercontent.com", api: "https://script.google.com/macros/s/AKfycbx12DI9GapXo1lkpdOWhDKwPXw3elNzeI4NgSyFK5LIIMhvpHye8GuH5O9Owc7k5KQUxA/exec" };
