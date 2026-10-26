@@ -444,3 +444,27 @@ h1,h2,h3{text-wrap:balance}
 .site-head .loginbtn{color:#E8EBF7;border-color:rgba(255,255,255,.35);white-space:nowrap;padding:6px 14px;line-height:1.2}
 .site-head .loginbtn:hover{color:var(--mint);border-color:var(--mint)}
 .site-head .loginbtn.on{background:rgba(255,255,255,.1);border-color:var(--mint);color:var(--mint)}
+
+/* ===== Header v3: ロゴ削除・余白・モバイル ===== */
+.site-head .wrap{height:72px;gap:20px}
+.nav{margin-left:0;flex:1;gap:28px}
+.nav a{white-space:nowrap}
+.nav .lang{margin-left:auto}
+.head-cta{display:none}
+@media (max-width:1080px){.nav{gap:20px}}
+@media (max-width:820px){
+  .site-head .wrap{height:60px;justify-content:space-between}
+  .menu-toggle{display:block;margin-left:0;min-height:40px;padding:6px 14px}
+  .head-cta{display:inline-flex}
+  .nav-cta{display:none}
+  .nav{position:absolute;top:60px;flex:none;gap:4px;padding:8px 24px 20px}
+  .nav > a:not(.btn){padding:12px 0;font-size:16px;width:100%;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav .lang{margin:12px 0 4px}
+  .nav .lang a{width:auto;padding:7px 16px;border:0;font-size:14px;white-space:nowrap}
+  .nav .loginbtn{margin-top:8px;min-height:40px}
+}
+@media (max-width:640px){
+  .filters .f-row select{flex:1 1 calc(50% - 5px);width:auto;min-width:0;max-width:none;min-height:42px}
+  .filters .f-row input[type=search],.filters .f-row input[type=text]{flex:1 1 100%;min-height:42px}
+  .f-salary{flex:1 1 100%}
+}
