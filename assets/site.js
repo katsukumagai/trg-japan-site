@@ -1,6 +1,6 @@
 /* ===== サイト共通設定：ここだけ書き換えればOK ===== */
 window.SITE = {
-  email: "katsu@kkrm-solution.com",          // 問い合わせ先（会社アドレスに変えるならここ）
+  email: "k.kumagai@tenthrevolution.com",          // 問い合わせ先（会社アドレスに変えるならここ）
   linkedin: "https://www.linkedin.com/in/",   // 熊谷さんのLinkedIn URLに差し替え
   bookingUrl: "",                              // カレンダー予約URLがあれば（空なら非表示）
 };
