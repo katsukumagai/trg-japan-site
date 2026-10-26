@@ -1,22 +1,32 @@
-(window.jobsReady || Promise.resolve()).then(function () {
-  const JOBS = window.JOBS || [], S = window.SITE, esc = window.esc, fmt = window.fmtSalary;
+(function () {
+  let JOBS = window.JOBS || [];
+  const S = window.SITE, esc = window.esc, fmt = window.fmtSalary;
   const $ = (id) => document.getElementById(id);
   const MAXBAR = 3000; // 年収バーのスケール上限（万円）
 
-  // サマリー
-  $("s-total").textContent = JOBS.length;
-  $("s-fde").textContent = JOBS.filter((j) => j.category.startsWith("FDE")).length;
-  $("s-high").textContent = JOBS.filter((j) => (j.salary || 0) >= 1500).length;
-  $("s-upd").textContent = (window.JOBS_UPDATED || "").replace(/-/g, ".");
-
-  // 絞り込み項目を実データから生成（件数の多い順）
-  const tally = (k) => Object.entries(JOBS.reduce((a, j) => (j[k] && (a[j[k]] = (a[j[k]] || 0) + 1), a), {})).sort((a, b) => b[1] - a[1]);
-  const fill = (sel, k) => tally(k).forEach(([v, n]) => sel.insertAdjacentHTML("beforeend", `<option value="${esc(v)}">${esc(v)}（${n}）</option>`));
-  fill($("industry"), "industry"); fill($("style"), "style"); fill($("lang"), "language");
-
   const chips = $("chips");
-  chips.innerHTML = `<button class="chip" type="button" data-v="" aria-pressed="true">すべて<span class="c">${JOBS.length}</span></button>` +
-    tally("category").map(([v, n]) => `<button class="chip" type="button" data-v="${esc(v)}" aria-pressed="false">${esc(v)}<span class="c">${n}</span></button>`).join("");
+
+  // 求人データが（再）取得されるたびに、件数・絞り込み項目・一覧を作り直す
+  function build() {
+    JOBS = window.JOBS || [];
+    $("s-total").textContent = JOBS.length;
+    $("s-fde").textContent = JOBS.filter((j) => j.category.startsWith("FDE")).length;
+    $("s-high").textContent = JOBS.filter((j) => (j.salary || 0) >= 1500).length;
+    $("s-upd").textContent = (window.JOBS_UPDATED || "").replace(/-/g, ".");
+
+    // 絞り込み項目を実データから生成（件数の多い順）。選択中の値は保持する
+    const tally = (k) => Object.entries(JOBS.reduce((a, j) => (j[k] && (a[j[k]] = (a[j[k]] || 0) + 1), a), {})).sort((a, b) => b[1] - a[1]);
+    [["industry", "industry"], ["style", "style"], ["lang", "language"]].forEach(([id, k]) => {
+      const sel = $(id), cur = sel.value;
+      sel.length = 1;
+      tally(k).forEach(([v, n]) => sel.insertAdjacentHTML("beforeend", `<option value="${esc(v)}">${esc(v)}（${n}）</option>`));
+      sel.value = [...sel.options].some((o) => o.value === cur) ? cur : "";
+      state[k === "language" ? "language" : k] = sel.value;
+    });
+    chips.innerHTML = `<button class="chip" type="button" data-v="" aria-pressed="true">すべて<span class="c">${JOBS.length}</span></button>` +
+      tally("category").map(([v, n]) => `<button class="chip" type="button" data-v="${esc(v)}" aria-pressed="false">${esc(v)}<span class="c">${n}</span></button>`).join("");
+    syncChips(); render();
+  }
 
   const state = { q: "", cat: "", industry: "", style: "", language: "", sal: 0, sort: "sal" };
 
@@ -101,5 +111,5 @@
     syncChips(); render();
   });
 
-  syncChips(); render();
-});
+  (window.onJobs || ((f) => f()))(build);
+})();

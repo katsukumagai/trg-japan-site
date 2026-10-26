@@ -37,8 +37,8 @@ window.SITE = {
     tabs.forEach((x) => { x.setAttribute("aria-selected", x === b); document.getElementById(x.getAttribute("aria-controls")).hidden = x !== b; });
   }));
 
-  // 求人データ（スプレッドシート or 固定データ）の準備ができてから反映
-  (window.jobsReady || Promise.resolve()).then(() => {
+  // 求人データ：まず固定データで表示し、シートの最新データが届いたら更新する
+  (window.onJobs || ((f) => f()))(() => {
   const jobs = window.JOBS || [];
 
   // トップ：ヒーローの求人ティッカー（年収上位、重複企業を間引く）

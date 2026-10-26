@@ -4,7 +4,6 @@
 (function () {
   // 「WEB公開」タブを「ウェブに公開」したCSVのURL（シートの更新は数分で反映）
   var CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRDcnLHoRNQ5XntmqfTi2CbHpYJM4B7x_14BwsjV5pH-mES1W5NAtdBbv3ESghLn0_hbs5SjibOZcs-/pub?gid=9001&single=true&output=csv";
-  var TIMEOUT_MS = 4000;
 
   // シートは英語表記、サイトは日本語表記。ここに無い値は、そのまま表示される。
   var MAP = {
@@ -82,7 +81,16 @@
     catch (e) { return new Date().toISOString().slice(0, 10); }
   };
 
-  var live = fetch(CSV_URL, { cache: "no-store" })
+  // onJobs(cb)：まず固定データ（data/jobs.js）で cb を実行。シートの最新データが取れたら、もう一度 cb を実行する。
+  var subs = [], liveReady = false;
+  window.onJobs = function (cb) {
+    subs.push(cb);
+    try { cb(); } catch (e) { if (window.console) console.error(e); }
+    if (liveReady) { try { cb(); } catch (e) { if (window.console) console.error(e); } }
+  };
+  window.JOBS_SOURCE = "static";
+
+  fetch(CSV_URL, { cache: "no-store" })
     .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.text(); })
     .then(function (t) {
       var jobs = toJobs(parseCSV(t));
@@ -90,13 +98,11 @@
       window.JOBS = jobs;
       window.JOBS_UPDATED = today();
       window.JOBS_SOURCE = "sheet";
+      liveReady = true;
+      subs.forEach(function (cb) { try { cb(); } catch (e) { if (window.console) console.error(e); } });
+    })
+    .catch(function (e) {
+      // 失敗時は固定データのまま表示（エラーは画面に出さない）
+      if (window.console) console.warn("求人データ：固定データを表示します（" + e.message + "）");
     });
-
-  var timeout = new Promise(function (_, rej) { setTimeout(function () { rej(new Error("timeout")); }, TIMEOUT_MS); });
-
-  // どの場合も解決する：失敗時は data/jobs.js の固定データのまま表示
-  window.jobsReady = Promise.race([live, timeout]).catch(function (e) {
-    window.JOBS_SOURCE = "static";
-    if (window.console) console.warn("求人データ：固定データを表示します（" + e.message + "）");
-  });
 })();
