@@ -3,10 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>企業の採用ご担当者様へ｜Tenth Revolution Group Japan</title>
-<meta name="description" content="正社員採用、コントラクト、育成（Revolent）、プロジェクト支援。Data & AI・ERP・CRM・Cloud 領域の採用課題に合わせて提供します。">
-<meta property="og:title" content="企業の採用ご担当者様へ｜Tenth Revolution Group Japan">
+<title>企業の採用ご担当者様へ｜日本国内・日本市場参入｜Tenth Revolution Group Japan</title>
+<meta name="description" content="日本国内の採用も、日本市場への参入も。正社員採用、コントラクト、育成（Revolent）、プロジェクト支援。Data & AI・ERP・CRM・Cloud 領域の採用課題に合わせて提供します。">
+<meta property="og:title" content="企業の採用ご担当者様へ｜日本国内・日本市場参入｜Tenth Revolution Group Japan">
 <meta property="og:type" content="website">
+<link rel="alternate" hreflang="ja" href="hiring.html">
+<link rel="alternate" hreflang="en" href="en/hiring.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
@@ -16,28 +18,49 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="index.html"><span>Tenth Revolution Group</span><small>JAPAN ｜ DATA & AI・ERP・CRM・CLOUD</small></a>
+    <a class="brand" href="index.html"><span>Tenth Revolution Group</span><small>JAPAN ｜ DATA &amp; AI・ERP・CRM・CLOUD</small></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav">メニュー</button>
     <nav class="nav" id="nav">
       <a href="job-change.html">転職をお考えの方</a>
       <a href="jobs.html">求人を探す</a>
       <a href="hiring.html" aria-current="page">企業の採用ご担当者様</a>
+      <span class="lang" role="group" aria-label="Language"><a href="hiring.html" hreflang="ja" lang="ja" class="on">日本語</a><a href="en/hiring.html" hreflang="en" lang="en">EN</a></span>
       <a class="btn btn-primary btn-sm" href="#contact">相談する</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
-<section class="page-hero">
+
+<section class="page-hero" style="padding-bottom:40px">
   <div class="wrap">
     <p class="eyebrow">FOR EMPLOYERS</p>
     <h1>採用の課題ごとに、<em>提供の形</em>を変えます。</h1>
-    <p class="lead">Data & AI・ERP・CRM・Cloud 領域の専門人材を、正社員採用、コントラクト、育成（Revolent）、プロジェクト支援の4つの形で。</p>
+    <p class="lead" data-mode="domestic">日本ですでに事業を営む企業の採用を、正社員・コントラクト・育成（Revolent）・プロジェクト支援の4つの形で。</p>
+    <p class="lead" data-mode="entry" hidden>日本市場に参入する企業の、最初の採用から拠点づくりまで。日本の採用慣行と年収水準を、最初に共有します。</p>
+    <div class="modetabs" role="tablist" aria-label="貴社の状況">
+      <button type="button" role="tab" data-set-mode="domestic" aria-selected="true"><small>日本国内</small><b>日本ですでに採用している</b></button>
+      <button type="button" role="tab" data-set-mode="entry" aria-selected="false"><small>MARKET ENTRY</small><b>日本市場に参入する</b></button>
+    </div>
     <div class="cta"><a class="btn btn-primary" href="#contact">採用について相談する</a><a class="btn btn-ghost" href="jobs.html">公開求人を見る</a></div>
   </div>
 </section>
+
+<nav class="anchors" aria-label="ページ内の移動">
+  <div class="wrap">
+    <a href="#services">サービス</a>
+    <a href="#salary">年収の目安</a>
+    <a href="#mistakes-domestic" data-mode="domestic">機会損失を防ぐ</a>
+    <a href="#mistakes-entry" data-mode="entry" hidden>参入でよくある失敗</a>
+    <a href="#budget" data-mode="entry" hidden>初年度の費用</a>
+    <a href="#entity" data-mode="entry" hidden>雇用の形</a>
+    <a href="#interview" data-mode="entry" hidden>面接のポイント</a>
+    <a href="#cases">ご相談パターン</a>
+    <a href="#process">進め方</a>
+  </div>
+</nav>
 <!-- SERVICES -->
-<section id="services">
+<section id="services" data-mode="both">
   <div class="wrap">
     <div class="sec-head">
       <h2>3つの形と、プロジェクト支援</h2>
@@ -92,8 +115,150 @@
   </div>
 </section>
 
+
+<section id="salary" data-mode="both">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>年収の目安</h2>
+      <p>現在ご紹介できる求人の「企業の予算上限」から自動で集計しています。実際の年収は経験により決まります。</p>
+    </div>
+    <div class="cur-toggle" role="group" aria-label="通貨">
+      <button type="button" data-cur="jpy" aria-pressed="true">¥ JPY</button>
+      <button type="button" data-cur="usd" aria-pressed="false">$ USD</button>
+      <span class="cur-note" id="cur-note"></span>
+    </div>
+    <div class="tbl-wrap">
+      <table class="stbl" id="salary-table">
+        <thead><tr><th>職種</th><th>求人数</th><th>中心レンジ（25〜75%）</th><th>中央値</th><th>最高</th></tr></thead>
+        <tbody><tr><td colspan="5" class="muted">読み込み中…</td></tr></tbody>
+      </table>
+    </div>
+    <p class="stats-note">求人数が3件に満たない職種は表示していません。数値は企業の予算上限の目安で、実際の提示額とは異なります。</p>
+  </div>
+</section>
+
+<section id="mistakes-domestic" class="band" data-mode="domestic">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>良い候補者を逃さないために</h2>
+      <p>採用が決まらない原因は、候補者の数より、選考の進め方にあることが少なくありません。</p>
+    </div>
+    <div class="mgrid">
+      <article class="mcard"><h3>選考が長い</h3><p>優秀な候補者ほど、複数社を並行して進めています。面接の間隔が空くと、先に他社が決まります。</p><div class="do"><small>DO INSTEAD</small>面接の回数と期間を最初に決め、日程を先に押さえる</div></article>
+      <article class="mcard"><h3>求人票が抽象的</h3><p>「データ活用を推進」だけでは、候補者は自分の経験との接点を判断できません。</p><div class="do"><small>DO INSTEAD</small>最初の6か月で担う仕事、チーム構成、使う技術を具体的に書く</div></article>
+      <article class="mcard"><h3>年収レンジを後出しにする</h3><p>最終面接のあとで希望と合わないと分かれば、双方の時間が無駄になります。</p><div class="do"><small>DO INSTEAD</small>上の「年収の目安」と比べて、初回面談までにレンジを決めておく</div></article>
+      <article class="mcard"><h3>面接官ごとに評価基準が違う</h3><p>評価がばらつくと、合否の判断が遅れ、候補者への印象も悪くなります。</p><div class="do"><small>DO INSTEAD</small>面接前に、必須条件と見るポイントを面接官全員で揃える</div></article>
+    </div>
+  </div>
+</section>
+
+<section id="mistakes-entry" class="band" data-mode="entry" hidden>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>日本参入でよくある4つの失敗</h2>
+      <p>参入初期の採用は、あとから修正しにくい判断が多く含まれます。</p>
+    </div>
+    <div class="mgrid">
+      <article class="mcard"><h3>英語の求人票だけで探す</h3><p>日本語が母語の候補者と、バイリンガルの候補者では、母集団も求める条件も違います。</p><div class="do"><small>DO INSTEAD</small>日本語と英語の両方で、同じ内容の求人票を用意する</div></article>
+      <article class="mcard"><h3>本社の報酬テーブルをそのまま使う</h3><p>日本では、賞与・各種手当・退職金などの慣行が、候補者の比較基準になります。</p><div class="do"><small>DO INSTEAD</small>「年収の目安」で相場を確認し、総額（年収＋福利）で提示する</div></article>
+      <article class="mcard"><h3>海外本社の面接が長く、決裁が日本にない</h3><p>時差と多段階の面接で数か月かかると、候補者は他社で決まります。</p><div class="do"><small>DO INSTEAD</small>面接の回数を絞り、日本側に最終判断を委ねる</div></article>
+      <article class="mcard"><h3>雇用主の形を決めずに内定を出す</h3><p>法人か、支店か、EORかによって、契約書・入社日・保険の加入先が変わります。</p><div class="do"><small>DO INSTEAD</small>下の「雇用の形」を先に決めてから、最初の採用を始める</div></article>
+    </div>
+  </div>
+</section>
+
+<section id="budget" data-mode="entry" hidden>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>初年度の費用の考え方</h2>
+      <p>採用予算は、年収だけでは決まりません。最初の1年で見ておく項目です。</p>
+    </div>
+    <div class="blist">
+      <div><b>年収</b><span>上の「年収の目安」で、職種ごとの相場を確認します。</span></div>
+      <div><b>社会保険などの会社負担</b><span>年収の約15%前後が目安です。保険料率は年度や加入先で変わるため、社会保険労務士に確認してください。</span></div>
+      <div><b>採用費用</b><span>契約形態（リテインド・エクスクルーシブ・成功報酬型）で変わります。ご相談時に見積りをお出しします。</span></div>
+      <div><b>拠点・雇用の仕組み</b><span>法人設立・支店登記・EORのいずれを選ぶかで、初期費用と継続費用が変わります。</span></div>
+      <div><b>オフィス・備品</b><span>リモート中心か、出社前提かで大きく変わります。</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="entity" class="band" data-mode="entry" hidden>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>日本で人を雇うための3つの形</h2>
+      <p>設立や契約の手続は、司法書士・税理士・社会保険労務士などの専門家にご確認ください。当社は法務・税務の助言は行いません。</p>
+    </div>
+    <div class="ogrid">
+      <article class="ocard"><span class="onum">1</span><h3>日本法人（株式会社・合同会社）</h3><p>日本の法人として雇用主になります。設立登記と、社会保険・労働保険への加入が必要です。</p><div class="do"><small>向いている場合</small>継続的に複数名を雇い、日本で事業を行う</div></article>
+      <article class="ocard"><span class="onum">2</span><h3>日本支店</h3><p>外国会社の日本支店として登記します。日本における代表者を置く必要があります。</p><div class="do"><small>向いている場合</small>本社と同一の法人格のまま、日本で営業を始める</div></article>
+      <article class="ocard"><span class="onum">3</span><h3>EOR（Employer of Record）</h3><p>外部の事業者が雇用主となり、雇用・給与・社会保険を処理します。拠点の設立前に、最初の人を雇えます。</p><div class="do"><small>向いている場合</small>まず1〜2名で市場を試し、法人化は後で判断する</div></article>
+    </div>
+  </div>
+</section>
+
+<section id="interview" data-mode="entry" hidden>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>カントリーマネージャー採用の面接ポイント</h2>
+      <p>日本の最初のリーダーは、事業判断と現場の実行の両方を担います。</p>
+    </div>
+    <div class="rules">
+      <div class="gcard"><h3>見極めるポイント</h3><ul>
+        <li>ゼロから顧客を作った経験（最初の10社をどう獲得したか）</li>
+        <li>本社と日本市場の間で、期待値を調整した経験</li>
+        <li>日本語と英語の両方で、経営層に説明できるか</li>
+        <li>最初の採用を、自分で面接し、決められるか</li>
+        <li>レポートラインと決裁範囲の希望</li>
+        <li>日本の商習慣（稟議・紹介営業・パートナー経由）への理解</li>
+      </ul></div>
+      <div class="gcard"><h3>質問例</h3><ul>
+        <li>最初の3か月で、何を成果として本社に報告しますか</li>
+        <li>本社の方針が日本の現場と合わないとき、どう動きましたか</li>
+        <li>最初の3人を採るなら、どの順番でどの職種を採りますか</li>
+        <li>大手顧客の決裁者に、初回でどう会いますか</li>
+        <li>この仕事を引き受ける上で、本社に求める条件は何ですか</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>よくいただくご相談</h2>
+      <p>課題の形と、それに合わせた提供モデルの組み合わせです。</p>
+    </div>
+    <div class="patterns">
+      <article class="pattern" data-mode="entry"><div class="who">日本に進出する海外AIスタートアップ</div><h3>日本で最初のFDEを採りたい</h3>
+        <dl><dt>課題</dt><dd>日本に1〜2名しかおらず、採用チームも知名度もない。英語と日本語の両方で顧客に入れるエンジニアが必要。</dd>
+        <dt>進め方</dt><dd>市場マッピングで母集団の規模と年収水準を先に提示。週次レポートで候補者の反応を共有しながら、日本での採用ブランディングも支援。</dd></dl>
+        <span class="model">リテインドサーチ</span></article>
+      <article class="pattern" data-mode="entry"><div class="who">日本法人を立ち上げる外資SaaS</div><h3>カントリーマネージャーと最初の営業・SEを採りたい</h3>
+        <dl><dt>課題</dt><dd>本社が日本市場に詳しくなく、候補者の見極めができない。リーダーが決まる前に、現場の採用が止まる。</dd>
+        <dt>進め方</dt><dd>リーダー像を先に定義し、本社面接の回数と順番を設計。日本側に最終判断を持たせたうえで、最初の営業・SEを並行して進める。</dd></dl>
+        <span class="model">リテインド ＋ エクスクルーシブ</span></article>
+      <article class="pattern" data-mode="entry"><div class="who">日本拠点が未設立の海外ベンダー</div><h3>法人化の前に、最初の1〜2名を雇いたい</h3>
+        <dl><dt>課題</dt><dd>市場を試したいが、法人設立には時間と費用がかかる。内定を出す前に雇用の形を決めたい。</dd>
+        <dt>進め方</dt><dd>EORで雇用を開始できる候補者を選び、法人化の判断は成果を見てから。契約形態を踏まえて、内定条件を設計。</dd></dl>
+        <span class="model">エクスクルーシブ ＋ EOR連携</span></article>
+      <article class="pattern" data-mode="domestic"><div class="who">急成長中のSaaS・フィンテック</div><h3>データ組織を半年で立ち上げたい</h3>
+        <dl><dt>課題</dt><dd>データエンジニア、MLエンジニア、アナリストを同時に複数名。社内TAだけでは手が回らない。</dd>
+        <dt>進め方</dt><dd>ポジションを優先順位づけし、専任チームで並行して進行。正社員の採用までの期間はコントラクト人材でつなぐ。</dd></dl>
+        <span class="model">エクスクルーシブ ＋ コントラクト</span></article>
+      <article class="pattern" data-mode="domestic"><div class="who">SIer・コンサルティングファーム</div><h3>案件は取れるのに、デリバリーの人がいない</h3>
+        <dl><dt>課題</dt><dd>Salesforce・ServiceNow・Dynamics 365の日本語対応コンサルタントが不足し、受注を見送っている。</dd>
+        <dt>進め方</dt><dd>入札スケジュールに合わせて人数と時期を設計し、隣接スキルの人材を育成して配属。稼働後に正社員化。</dd></dl>
+        <span class="model">Revolent</span></article>
+      <article class="pattern" data-mode="domestic"><div class="who">事業会社のDX・AI推進部門</div><h3>PoCから本番運用まで、まとめて任せたい</h3>
+        <dl><dt>課題</dt><dd>AI活用の構想はあるが、データ基盤も実装メンバーも社内にない。ベンダーを何社も管理したくない。</dd>
+        <dt>進め方</dt><dd>プロジェクト単位でお引き受けし、必要な専門人材をこちらで揃えて成果物まで責任を持つ。</dd></dl>
+        <span class="model">プロジェクト支援（SOW）</span></article>
+    </div>
+  </div>
+</section>
 <!-- FOCUS ROLES -->
-<section class="band" id="roles">
+<section class="band" id="roles" data-mode="both">
   <div class="wrap">
     <div class="sec-head">
       <h2>得意な職種</h2>
@@ -134,7 +299,7 @@
 </section>
 
 <!-- REVOLENT -->
-<section class="dark" id="revolent">
+<section class="dark" id="revolent" data-mode="both">
   <div class="wrap">
     <div class="sec-head">
       <h2>存在しない人材は、奪い合わずに育てる。</h2>
@@ -199,48 +364,8 @@
   </div>
 </section>
 
-<!-- PATTERNS -->
-<section id="patterns">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>よくいただくご相談</h2>
-      <p>課題の形と、それに合わせた提供モデルの組み合わせです。</p>
-    </div>
-    <div class="patterns">
-      <article class="pattern">
-        <div class="who">日本に進出する海外AIスタートアップ</div>
-        <h3>日本で最初のFDEを採りたい</h3>
-        <dl><dt>課題</dt><dd>日本に1〜2名しかおらず、採用チームも知名度もない。英語と日本語の両方で顧客に入れるエンジニアが必要。</dd>
-        <dt>進め方</dt><dd>市場マッピングで母集団の規模と年収水準を先に提示。週次レポートで候補者の反応を共有しながら、日本での採用ブランディングも支援。</dd></dl>
-        <span class="model">リテインドサーチ</span>
-      </article>
-      <article class="pattern">
-        <div class="who">急成長中のSaaS・フィンテック</div>
-        <h3>データ組織を半年で立ち上げたい</h3>
-        <dl><dt>課題</dt><dd>データエンジニア、MLエンジニア、アナリストを同時に複数名。社内TAだけでは手が回らない。</dd>
-        <dt>進め方</dt><dd>ポジションを優先順位づけし、専任チームで並行して進行。正社員の採用までの期間はコントラクト人材でつなぐ。</dd></dl>
-        <span class="model">エクスクルーシブ ＋ コントラクト</span>
-      </article>
-      <article class="pattern">
-        <div class="who">SIer・コンサルティングファーム</div>
-        <h3>案件は取れるのに、デリバリーの人がいない</h3>
-        <dl><dt>課題</dt><dd>Salesforce・ServiceNow・Dynamics 365の日本語対応コンサルタントが不足し、受注を見送っている。</dd>
-        <dt>進め方</dt><dd>入札スケジュールに合わせて人数と時期を設計し、隣接スキルの人材を育成して配属。稼働後に正社員化。</dd></dl>
-        <span class="model">Revolent</span>
-      </article>
-      <article class="pattern">
-        <div class="who">事業会社のDX・AI推進部門</div>
-        <h3>PoCから本番運用まで、まとめて任せたい</h3>
-        <dl><dt>課題</dt><dd>AI活用の構想はあるが、データ基盤も実装メンバーも社内にない。ベンダーを何社も管理したくない。</dd>
-        <dt>進め方</dt><dd>プロジェクト単位でお引き受けし、必要な専門人材をこちらで揃えて成果物まで責任を持つ。</dd></dl>
-        <span class="model">プロジェクト支援（SOW）</span>
-      </article>
-    </div>
-  </div>
-</section>
 
-<!-- PROCESS -->
-<section class="band">
+<section id="process" class="band" data-mode="both">
   <div class="wrap">
     <div class="sec-head"><h2>ご依頼から入社・稼働まで</h2></div>
     <ol class="process">
@@ -261,11 +386,11 @@
       <p class="muted" style="margin-top:16px">転職のご相談も、採用のご相談も歓迎です。方向性が決まっていなくて構いません。30分のオンライン面談で、市場状況と打ち手をお伝えします。</p>
       <p style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
         <a class="btn btn-primary" href="#" data-mail="お問い合わせ">メールで相談する</a>
-        <span data-booking-wrap><a class="btn btn-ghost" style="border-color:#fff;color:#fff" href="#" data-booking>面談を予約する</a></span>
+        <span data-booking-wrap><a class="btn btn-ghost" href="#" data-booking>面談を予約する</a></span>
       </p>
     </div>
     <div class="contact-box">
-      <div class="row"><span>担当</span>熊谷 克信（Katsu Kumagai）<br>Data & AI・ERP & CRM・Cloud 日本責任者</div>
+      <div class="row"><span>担当</span>熊谷 克信（Katsu Kumagai）<br>Data &amp; AI・ERP &amp; CRM・Cloud 日本責任者</div>
       <div class="row"><span>メール</span><a class="mail" href="#" data-mail=""></a></div>
       <div class="row"><span>LinkedIn</span><a href="#" data-linkedin target="_blank" rel="noopener">プロフィールを見る</a></div>
       <div class="row"><span>オフィス</span>〒100-0011 東京都千代田区内幸町2-1-6 日比谷パークフロント 19F</div>
@@ -279,11 +404,9 @@
     <div>
       <p><strong style="color:#fff">Tenth Revolution Group Japan</strong></p>
       <p>運営：Frank Recruitment Group株式会社</p>
-      <p>有料職業紹介事業 許可番号 <span class="todo">要記入</span>｜労働者派遣事業 許可番号 <span class="todo">要記入</span></p>
     </div>
     <div>
       <p><a href="job-change.html">転職ガイド</a>　<a href="jobs.html">求人一覧</a>　<a href="hiring.html">企業の採用ご担当者様</a></p>
-      <p><a href="disclosure.html">職業安定法に基づく情報公開</a>　<a href="disclosure.html#privacy">個人情報の取り扱い</a></p>
       <p>© Tenth Revolution Group</p>
     </div>
   </div>
@@ -292,5 +415,6 @@
 <script src="data/jobs.js"></script>
 <script src="assets/data-loader.js"></script>
 <script src="assets/site.js"></script>
+
 </body>
 </html>

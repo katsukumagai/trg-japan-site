@@ -5,27 +5,33 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>求人を探す｜Tenth Revolution Group Japan</title>
 <meta name="description" content="Data & AI・FDE・データエンジニア・データサイエンティストなど、いまご紹介できる求人を職種・年収・働き方で絞り込めます。">
+<meta property="og:title" content="求人を探す｜Tenth Revolution Group Japan">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="ja" href="jobs.html">
+<link rel="alternate" hreflang="en" href="en/jobs.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<a class="skip" href="#results">求人一覧へ移動</a>
+<a class="skip" href="#results">本文へ移動</a>
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="index.html"><span>Tenth Revolution Group</span><small>JAPAN ｜ DATA & AI・ERP・CRM・CLOUD</small></a>
+    <a class="brand" href="index.html"><span>Tenth Revolution Group</span><small>JAPAN ｜ DATA &amp; AI・ERP・CRM・CLOUD</small></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav">メニュー</button>
     <nav class="nav" id="nav">
       <a href="job-change.html">転職をお考えの方</a>
       <a href="jobs.html" aria-current="page">求人を探す</a>
       <a href="hiring.html">企業の採用ご担当者様</a>
+      <span class="lang" role="group" aria-label="Language"><a href="jobs.html" hreflang="ja" lang="ja" class="on">日本語</a><a href="en/jobs.html" hreflang="en" lang="en">EN</a></span>
       <a class="btn btn-primary btn-sm" href="index.html#contact">相談する</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
+
   <div class="wrap jobs-hero">
     <h1>いまご紹介できる求人</h1>
     <p>掲載しているのはご紹介可能な求人の一部です。年収は企業の予算上限の目安で、経験に応じて決まります。気になる求人を開くと、そのまま担当者に相談できます。</p>
@@ -55,7 +61,6 @@
     <div class="result-bar"><span><b id="count">0</b> 件</span><button class="f-reset" id="reset" type="button">条件をクリア</button></div>
     <ul class="job-list" id="list"></ul>
   </div>
-</main>
 
 <section class="dark" style="padding:64px 0">
   <div class="wrap contact">
@@ -67,16 +72,16 @@
   </div>
 </section>
 
+</main>
+
 <footer class="site-foot">
   <div class="wrap">
     <div>
       <p><strong style="color:#fff">Tenth Revolution Group Japan</strong></p>
       <p>運営：Frank Recruitment Group株式会社</p>
-      <p>有料職業紹介事業 許可番号 <span class="todo">要記入</span>｜労働者派遣事業 許可番号 <span class="todo">要記入</span></p>
     </div>
     <div>
       <p><a href="job-change.html">転職ガイド</a>　<a href="jobs.html">求人一覧</a>　<a href="hiring.html">企業の採用ご担当者様</a></p>
-      <p><a href="disclosure.html">職業安定法に基づく情報公開</a>　<a href="disclosure.html#privacy">個人情報の取り扱い</a></p>
       <p>© Tenth Revolution Group</p>
     </div>
   </div>
@@ -85,6 +90,7 @@
 <script src="data/jobs.js"></script>
 <script src="assets/data-loader.js"></script>
 <script src="assets/site.js"></script>
+
 <script src="assets/jobs.js"></script>
 </body>
 </html>
