@@ -1,6 +1,6 @@
 (function () {
   let JOBS = window.JOBS || [];
-  const S = window.SITE, esc = window.esc, fmt = window.fmtSalary;
+  const S = window.SITE, esc = window.esc, fmt = window.fmtSalary, EN = window.EN;
   const $ = (id) => document.getElementById(id);
   const MAXBAR = 3000; // 年収バーのスケール上限（万円）
 
@@ -19,11 +19,11 @@
     [["industry", "industry"], ["style", "style"], ["lang", "language"]].forEach(([id, k]) => {
       const sel = $(id), cur = sel.value;
       sel.length = 1;
-      tally(k).forEach(([v, n]) => sel.insertAdjacentHTML("beforeend", `<option value="${esc(v)}">${esc(v)}（${n}）</option>`));
+      tally(k).forEach(([v, n]) => sel.insertAdjacentHTML("beforeend", `<option value="${esc(v)}">${esc(v)}${EN ? " (" + n + ")" : "（" + n + "）"}</option>`));
       sel.value = [...sel.options].some((o) => o.value === cur) ? cur : "";
       state[k === "language" ? "language" : k] = sel.value;
     });
-    chips.innerHTML = `<button class="chip" type="button" data-v="" aria-pressed="true">すべて<span class="c">${JOBS.length}</span></button>` +
+    chips.innerHTML = `<button class="chip" type="button" data-v="" aria-pressed="true">${EN ? "All" : "すべて"}<span class="c">${JOBS.length}</span></button>` +
       tally("category").map(([v, n]) => `<button class="chip" type="button" data-v="${esc(v)}" aria-pressed="false">${esc(v)}<span class="c">${n}</span></button>`).join("");
     syncChips(); render();
   }
@@ -59,7 +59,7 @@
 
     $("count").textContent = list.length;
     $("list").innerHTML = list.length ? list.map(row).join("") :
-      `<li class="empty">条件に合う求人がありません。条件を外すか、<a href="#" data-mail="求人の相談">非公開求人について相談</a>してください。</li>`;
+      (EN ? `<li class="empty">No roles match. Clear a filter, or <a href="#" data-mail="Inquiry about confidential roles">ask us about confidential roles</a>.</li>` : `<li class="empty">条件に合う求人がありません。条件を外すか、<a href="#" data-mail="求人の相談">非公開求人について相談</a>してください。</li>`);
     $("list").querySelectorAll("[data-mail]").forEach((a) => {
       a.href = "mailto:" + S.email + "?subject=" + encodeURIComponent(a.dataset.mail);
     });
@@ -74,18 +74,19 @@
     const pct = j.salary ? Math.min(100, Math.round((j.salary / MAXBAR) * 100)) : 0;
     const tags = [`<span class="cat">${esc(j.category)}</span>`, j.industry, j.style, j.language]
       .filter(Boolean).map((t) => (t.startsWith("<") ? t : `<span>${esc(t)}</span>`)).join("");
-    const subject = `求人の相談：${j.company}／${j.title}`;
+    const subject = EN ? `Role inquiry: ${j.company} / ${j.title}` : `求人の相談：${j.company}／${j.title}`;
+    const generic = EN ? "We will explain the role, the process and the experience required." : "業務内容・選考の流れ・求める経験を詳しくご説明します。";
     const about = j.confidential
-      ? "企業名は面談の際にお伝えしています。業務内容・選考の流れ・求める経験を詳しくご説明します。"
-      : (j.about || "業務内容・選考の流れ・求める経験を詳しくご説明します。");
+      ? (EN ? "The company name is shared in our conversation. " : "企業名は面談の際にお伝えしています。") + generic
+      : (j.about || generic);
     return `<li class="job"><details>
       <summary>
         <span class="j-title">${esc(j.title)}</span>
-        <span class="j-co">${esc(j.company)}${j.confidential ? '<span class="conf">企業名非公開</span>' : ""}</span>
+        <span class="j-co">${esc(j.company)}${j.confidential ? `<span class="conf">${EN ? "Confidential" : "企業名非公開"}</span>` : ""}</span>
         <span class="j-tags">${tags}</span>
-        <span class="j-sal"><small>年収</small> <b>${fmt(j.salary)}</b>${pct ? `<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span>` : ""}</span>
+        <span class="j-sal"><small>${EN ? "Salary" : "年収"}</small> <b>${fmt(j.salary)}</b>${pct ? `<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span>` : ""}</span>
       </summary>
-      <div class="j-body"><p>${esc(about)}</p><a class="btn btn-primary btn-sm" href="#" data-mail="${esc(subject)}">この求人について相談する</a></div>
+      <div class="j-body"><p>${esc(about)}</p><a class="btn btn-primary btn-sm" href="#" data-mail="${esc(subject)}">${EN ? "Ask about this role" : "この求人について相談する"}</a></div>
     </details></li>`;
   }
 
@@ -97,7 +98,7 @@
   $("sort").addEventListener("change", (e) => { state.sort = e.target.value; render(); });
   $("sal").addEventListener("input", (e) => {
     state.sal = +e.target.value;
-    $("sal-v").textContent = state.sal ? state.sal.toLocaleString("ja-JP") + "万円以上" : "指定なし";
+    $("sal-v").textContent = state.sal ? (EN ? "¥" + (state.sal / 100) + "M+" : state.sal.toLocaleString("ja-JP") + "万円以上") : (EN ? "Any" : "指定なし");
     render();
   });
   chips.addEventListener("click", (e) => {
@@ -107,7 +108,7 @@
   $("reset").addEventListener("click", () => {
     Object.assign(state, { q: "", cat: "", industry: "", style: "", language: "", sal: 0 });
     $("q").value = ""; ["industry", "style", "lang"].forEach((k) => ($(k).value = ""));
-    $("sal").value = 0; $("sal-v").textContent = "指定なし";
+    $("sal").value = 0; $("sal-v").textContent = EN ? "Any" : "指定なし";
     syncChips(); render();
   });
 

@@ -30,6 +30,18 @@
     language: { "Japanese": "日本語", "Bilingual": "日英バイリンガル", "English": "英語" }
   };
 
+  var EN = document.documentElement.lang === "en";
+  // 英語ページ：シートの英語表記をそのまま使う。固定データ（日本語）は逆引きで英語にする。
+  function reverse(m) { var r = {}; Object.keys(m).forEach(function (k) { r[m[k]] = k; }); return r; }
+  if (EN && window.JOBS) {
+    var REV = { category: reverse(MAP.category), industry: reverse(MAP.industry), style: reverse(MAP.style), language: reverse(MAP.language) };
+    window.JOBS = window.JOBS.map(function (j) {
+      var o = {}; Object.keys(j).forEach(function (k) { o[k] = j[k]; });
+      ["category", "industry", "style", "language"].forEach(function (k) { o[k] = (REV[k][j[k]]) || j[k]; });
+      return o;
+    });
+  }
+
   // CSV（引用符・改行・カンマに対応）
   function parseCSV(text) {
     var rows = [], row = [], cell = "", q = false, i = 0, c;
@@ -55,7 +67,7 @@
     var need = ["company", "title", "category", "industry", "salary", "style", "language", "about", "confidential"];
     if (need.some(function (k) { return h.indexOf(k) < 0; })) throw new Error("unexpected header");
     var idx = {}; need.forEach(function (k) { idx[k] = h.indexOf(k); });
-    var tr = function (k, v) { return (MAP[k] && MAP[k][v]) || v; };
+    var tr = function (k, v) { return EN ? v : ((MAP[k] && MAP[k][v]) || v); };
     var out = [];
     rows.slice(1).forEach(function (r) {
       var g = function (k) { return (r[idx[k]] || "").trim(); };
