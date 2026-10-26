@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open roles | Tenth Revolution Group Japan</title>
+<meta name="description" content="Browse current Data & AI, FDE, data engineering and data science roles. Filter by role, salary and work style.">
+<meta property="og:title" content="Open roles | Tenth Revolution Group Japan">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="ja" href="../jobs.html">
+<link rel="alternate" hreflang="en" href="jobs.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#results">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span>Tenth Revolution Group</span><small>JAPAN ｜ DATA &amp; AI・ERP・CRM・CLOUD</small></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav">
+      <a href="job-change.html">For candidates</a>
+      <a href="jobs.html" aria-current="page">Open roles</a>
+      <a href="hiring.html">For employers</a>
+      <span class="lang" role="group" aria-label="Language"><a href="../jobs.html" hreflang="ja" lang="ja">日本語</a><a href="jobs.html" hreflang="en" lang="en" class="on">EN</a></span>
+      <a class="btn btn-primary btn-sm" href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap jobs-hero">
+    <h1>Open roles</h1>
+    <p>These are a selection of the roles we can introduce. Salary shows the employer budget ceiling and depends on experience. Open any role to ask us about it directly.</p>
+    <div class="jobs-summary">
+      <div><b id="s-total">—</b> roles</div>
+      <div><b id="s-fde">—</b> FDE / implementation roles</div>
+      <div><b id="s-high">—</b> roles at ¥15M+</div>
+      <div><b id="s-upd">—</b> updated</div>
+    </div>
+  </div>
+
+  <div class="filters" role="search" aria-label="Filter roles">
+    <div class="wrap">
+      <div class="f-row">
+        <label class="f-search"><span class="skip">Keyword</span><input id="q" type="search" placeholder="Search by role, company or skill (e.g. LLM, Databricks, credit)"></label>
+        <select id="industry" aria-label="Industry"><option value="">All industries</option></select>
+        <select id="style" aria-label="Work style"><option value="">Work style: all</option></select>
+        <select id="lang" aria-label="Language"><option value="">Language: all</option></select>
+        <label class="f-salary">Salary <input id="sal" type="range" min="0" max="2500" step="100" value="0" aria-describedby="sal-v"> <span id="sal-v" class="num">Any</span></label>
+        <select id="sort" aria-label="Sort"><option value="sal">Salary: high to low</option><option value="co">Company A–Z</option></select>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Role type"></div>
+    </div>
+  </div>
+
+  <div class="wrap" id="results">
+    <div class="result-bar"><span><b id="count">0</b> roles</span><button class="f-reset" id="reset" type="button">Clear filters</button></div>
+    <ul class="job-list" id="list"></ul>
+  </div>
+
+<section class="dark" style="padding:64px 0">
+  <div class="wrap contact">
+    <div>
+      <h2 style="font-size:clamp(24px,3vw,34px)">Can't find a match? Talk to us.</h2>
+      <p class="muted" style="margin-top:12px">We also hold confidential roles and positions that are about to open. Based on your background, we will suggest roles that fit.</p>
+    </div>
+    <div><a class="btn btn-primary" href="#" data-mail="Career inquiry (from Open roles)">Talk about your career</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p><strong style="color:#fff">Tenth Revolution Group Japan</strong></p>
+      <p>Operated by Frank Recruitment Group K.K.</p>
+    </div>
+    <div>
+      <p><a href="job-change.html">Job change guide</a>　<a href="jobs.html">Open roles</a>　<a href="hiring.html">For employers</a></p>
+      <p>© Tenth Revolution Group</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../data/jobs.js"></script>
+<script src="../assets/data-loader.js"></script>
+<script src="../assets/site.js"></script>
+
+<script src="../assets/jobs.js"></script>
+</body>
+</html>
